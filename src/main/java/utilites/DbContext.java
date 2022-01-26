@@ -1,5 +1,7 @@
 package utilites;
 
+import entities.Category;
+import entities.Part;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
@@ -15,7 +17,8 @@ public class DbContext {
                 Configuration configuration = new Configuration().configure();
                 //new Configuration().configure("hibernate.cfg.xml");
 
-                configuration.addAnnotatedClass(Name.class);
+                configuration.addAnnotatedClass(Category.class);
+                configuration.addAnnotatedClass(Part.class);
 
                 StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder()
                         .applySettings(configuration.getProperties());
