@@ -18,14 +18,6 @@ public class Category {
     @OneToMany(mappedBy = "category")
     private List<Part> partList;
 
-//    public Category() {
-//    }
-//
-//    public Category(int id, String name) {
-//        this.id = id;
-//        this.name = name;
-//    }
-
     @Override
     public String toString() {
         return "Category{" +

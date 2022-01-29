@@ -3,6 +3,10 @@ package entities;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 
 @Data
@@ -22,5 +26,7 @@ public class Part {
     @JoinColumn(name = "category_id", nullable = false)
     private Category category;
 
+    @ManyToMany(mappedBy = "projects")
+    private Set<Shop> shops = new HashSet<>();
 
 }
