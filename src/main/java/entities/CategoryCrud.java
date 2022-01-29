@@ -2,17 +2,15 @@ package entities;
 
 import org.hibernate.Session;
 import org.hibernate.query.Query;
-import utilites.DbContext;
 
 import static utilites.Helper.readInputInt;
-
 
 import java.util.List;
 import java.util.Scanner;
 
 public class CategoryCrud {
     static Scanner in = new Scanner(System.in);
-    Session context = DbContext.getSessionFactory().openSession();
+    //Session context = DbContext.getSessionFactory().openSession();
 
     public static void CreateCategory(Session context) {
         System.out.println("Назва категорії: ");
@@ -54,30 +52,12 @@ public class CategoryCrud {
         System.out.println("Введіть Id категорії для видалення: ");
         int idCatDel = readInputInt();
         try {
-            //Category catDelete = (Category) context.load(Category.class, idCatDel);
-            Category caDe=context.find(Category.class,idCatDel);
-
-            //System.out.println(catDelete.getName());
-            //context.delete(catDelete);
-            context.delete(caDe);
+            Category catDelete = context.find(Category.class, idCatDel);
+            context.delete(catDelete);
             System.out.println("Категорію видалено!");
-            //context.save(catDelete);
             context.getTransaction().commit();
         } catch (Exception e) {
             System.out.println("Помилка: " + e.getMessage());
         }
-    }
-
-    public static Category FindRecordById(Integer id, Session context) {
-        Category findId = null;
-        try {
-            findId = (Category) context.load(Category.class, id);
-        } catch (Exception ex) {
-            if (null != context.getTransaction()) {
-                context.getTransaction().rollback();
-            }
-            ex.printStackTrace();
-        }
-        return findId;
     }
 }
