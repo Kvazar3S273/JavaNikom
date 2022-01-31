@@ -17,12 +17,7 @@ public class Shop {
     @Column(length = 200, nullable = false)
     private String name;
 
-    @ManyToMany(cascade = { CascadeType.ALL })
-    @JoinTable(
-            name = "tbl_shops_parts",
-            joinColumns = { @JoinColumn(name = "shop_id") },
-            inverseJoinColumns = { @JoinColumn(name = "part_id") }
-    )
-    Set<Part> parts = new HashSet<>();
+    @OneToMany(mappedBy = "shop")
+    private List<Part> parts;
 
 }

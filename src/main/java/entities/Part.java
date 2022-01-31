@@ -22,11 +22,13 @@ public class Part {
     private double price;
     @Column(length = 200)
     private String description;
+
     @ManyToOne
     @JoinColumn(name = "category_id", nullable = false)
     private Category category;
 
-    @ManyToMany(mappedBy = "projects")
-    private Set<Shop> shops = new HashSet<>();
+    @ManyToMany(mappedBy = "part")
+    private List<Shop> shops = new ArrayList<>();
+
 
 }

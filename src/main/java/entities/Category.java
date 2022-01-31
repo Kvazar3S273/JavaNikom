@@ -3,6 +3,7 @@ package entities;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -17,6 +18,14 @@ public class Category {
 
     @OneToMany(mappedBy = "category")
     private List<Part> partList;
+
+    @ManyToMany(cascade = {CascadeType.ALL})
+    @JoinTable(
+            name = "category_part",
+            joinColumns = { @JoinColumn(referencedColumnName = "Id")},
+            inverseJoinColumns = {@JoinColumn(referencedColumnName = "Id")})
+    private List<Part> parts = new ArrayList<>();
+
 
     @Override
     public String toString() {
